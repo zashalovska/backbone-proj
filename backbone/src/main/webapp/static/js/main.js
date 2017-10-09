@@ -4,7 +4,7 @@ require.config({
         "backbone" : "lib/backbone",
         "underscore" : "lib/underscore",
         "contactView" : "views/contact",
-        "dust" : "lib/dust"
+        "dust" : "lib/dust-full"
     }
 });
 
@@ -13,6 +13,6 @@ require(['contactView'], function (ContactView) {
 });
 
 define.amd.dust = true;
-require(["lib/dust"], function(dust) {
-
+require(['dust'], function (dust) {
+  dust.render("");
 });
