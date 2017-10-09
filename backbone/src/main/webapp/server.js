@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var dust = require('dustjs-linkedin');
 
 app.use(express.static('static'));
 
