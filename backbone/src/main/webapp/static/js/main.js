@@ -12,7 +12,8 @@ require.config({
     'backbone': {
       debts: [
       'underscore',
-      'jquery'
+      'jquery',
+      'dust'
       ],
       exports: 'Contact'
     }
