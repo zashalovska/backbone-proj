@@ -6,9 +6,12 @@ define(['backbone', 'dust'], function (Backbone) {
     var contacts = [{name:"John", phone: "800900", group: "Job"},
         {name:"Oleg", phone: "980980", group: "Friend"},
         {name:"Mila", phone: "43434343", group: "Family"},
-        {name:"Lilia", phone: "5555555", group: "School"}];
+        {name:"Lilia", phone: "5555555", group: "School"},
+        {name:"Kate", phone: "5454545", group: "University"},
+        {name:"Melani", phone: "44444444", group: "Job"}
+    ];
 
-    var Book = Backbone.Model.extend({
+    var Contact = Backbone.Model.extend({
         defaults:{
             coverImage:"../../img/man1.jpg",
             name:"Unnamed",
@@ -18,20 +21,34 @@ define(['backbone', 'dust'], function (Backbone) {
     });
 
     var Library = Backbone.Collection.extend({
-        model: Book
+        model: Contact
     });
 
     var ContactView = Backbone.View.extend({
-    template: $("#bookTemplate").html(),
     tagName:"div",
     className:"contactContainer",
     initialize: function () {
             this.render();
         },
-    render: function(){
-        this.$el.html(this.model);
+    render: function() {
+        dust.render("intro", this.model.toJSON(), function(err, out) {
+            this.$el.html(out);
+        }.bind(this));
+
         return this;
-    }
+    },
+
+    events: {
+        "click .deleteButton": "deleteContact"
+    },
+
+    deleteContact:function () {
+         //Delete model
+         this.model.destroy();
+
+         //Delete view
+         this.remove();
+        }
     });
 
     var LibraryView = Backbone.View.extend({
@@ -46,9 +63,7 @@ define(['backbone', 'dust'], function (Backbone) {
             var that = this;
             _.forEach(this.collection.models, function(file) {
                 console.log(file);
-                dust.render("intro", file.toJSON(), function(err, out) {
-                that.renderContact(out);
-            }.bind(this))});
+                that.renderContact(file)});
 
             return this;
         },
@@ -63,5 +78,5 @@ define(['backbone', 'dust'], function (Backbone) {
 
     var libraryView = new LibraryView();
 
-    return libraryView;
+    return ContactView;
 });

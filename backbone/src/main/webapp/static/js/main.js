@@ -5,7 +5,8 @@ require.config({
         "underscore" : "lib/underscore",
         "contactView" : "views/contact",
         "dust" : "lib/dust-full",
-        "lodash" : "lib/lodash"
+        "lodash" : "lib/lodash",
+        "text" : "lib/text"
     },
 
   shim: {
@@ -15,7 +16,7 @@ require.config({
       'jquery',
       'dust'
       ],
-      exports: 'Contact'
+      exports: 'Backbone'
     }
   }
 });
