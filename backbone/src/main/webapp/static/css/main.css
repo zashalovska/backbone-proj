@@ -1,3 +1,37 @@
-body{
-    background-color: aqua;
+body {
+    background-color: #eee;
 }
+
+#app {
+    width: 1200px;
+    align: center;
+}
+
+.contactContainer {
+    border: 1px solid #aaa;
+    width: 200px;
+    height: 330px;
+    background-color: #fff;
+    float: left;
+    margin: 5px;
+    text-align: center;
+}
+.contactContainer img {
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 2px;
+    width: 150px;
+}
+.contactContainer li {
+    list-style-type: none;
+}
+
+.deleteButton {
+    padding: 5px;
+    color: white;
+    margin: 10px;
+    background-color: darkred;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+

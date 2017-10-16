@@ -5,7 +5,7 @@ require.config({
         "underscore" : "lib/underscore",
         "contactView" : "views/contact",
         "dust" : "lib/dust-full",
-        "contacts" : "../templates/contacts.dust"
+        "lodash" : "lib/lodash"
     },
 
   shim: {
@@ -24,10 +24,3 @@ require(['contactView'], function (ContactView) {
     new ContactView;
 });
 
-/*define.amd.dust = true;
-dust.config.amd = true;
-require(['dust', 'contacts'], function (dust) {
-  dust.render('contacts', { name: "Jupiter" }, function() {
-    console.log("HelloDust!");
-  });*/
-//});

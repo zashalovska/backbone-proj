@@ -4,11 +4,19 @@
     <meta charset="UTF-8">
     <title>Backbone</title>
     <script data-main="/js/main.js" src="js/lib/require.js"></script>
+    <link rel="stylesheet" href="css/main.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
+
 <body>
     <div id="app">
-
+        <script id="contactTemplate" type="text/template">
+            <img src="{coverImage}"/>
+            <li><h3>{name}</h3></li>
+            <li>phone: {phone}</li>
+            <li>group: {group}</li>
+            <button class ="deleteButton" type="button">Delete</button>
+        </script>
     </div>
 </body>
 </html>
