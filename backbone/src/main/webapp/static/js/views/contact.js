@@ -1,4 +1,9 @@
-define(['backbone', 'dust'], function (Backbone) {
+define([
+    'backbone',
+    'dust',
+    'contactModel',
+    'contactsView'
+], function (Backbone, Dust, contactModel, ContactView) {
     var source = document.getElementById('contactTemplate').innerText;
     var compiled = dust.compile(source, "intro");
     dust.loadSource(compiled);
@@ -11,44 +16,8 @@ define(['backbone', 'dust'], function (Backbone) {
         {name:"Melani", phone: "44444444", group: "Job"}
     ];
 
-    var Contact = Backbone.Model.extend({
-        defaults:{
-            coverImage:"../../img/man1.jpg",
-            name:"Unnamed",
-            phone: "without telephone",
-            group: "without group"
-        }
-    });
-
     var Library = Backbone.Collection.extend({
-        model: Contact
-    });
-
-    var ContactView = Backbone.View.extend({
-    tagName:"div",
-    className:"contactContainer",
-    initialize: function () {
-            this.render();
-        },
-    render: function() {
-        dust.render("intro", this.model.toJSON(), function(err, out) {
-            this.$el.html(out);
-        }.bind(this));
-
-        return this;
-    },
-
-    events: {
-        "click .deleteButton": "deleteContact"
-    },
-
-    deleteContact:function () {
-         //Delete model
-         this.model.destroy();
-
-         //Delete view
-         this.remove();
-        }
+        model: contactModel
     });
 
     var LibraryView = Backbone.View.extend({

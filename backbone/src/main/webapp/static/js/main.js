@@ -6,7 +6,9 @@ require.config({
         "contactView" : "views/contact",
         "dust" : "lib/dust-full",
         "lodash" : "lib/lodash",
-        "text" : "lib/text"
+        "text" : "lib/text",
+        "contactModel" : "models/contactModel",
+        "contactsView" : "views/contactView"
     },
 
   shim: {
@@ -17,6 +19,9 @@ require.config({
       'dust'
       ],
       exports: 'Backbone'
+    },
+    'dust': {
+      exports: 'Dust'
     }
   }
 });
