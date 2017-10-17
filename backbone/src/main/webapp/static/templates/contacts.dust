@@ -1,1 +1,5 @@
-Welcomes to Dust, {name}.
+      <img src="{coverImage}"/>
+      <li><h3>{name}</h3></li>
+      <li>phone: {phone}</li>
+      <li>group: {group}</li>
+      <button id="delete" class ="deleteButton" type="button">Delete</button>
