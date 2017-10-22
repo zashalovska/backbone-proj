@@ -26,6 +26,8 @@ define([
         initialize:function(){
             this.collection = new Library(contacts);
             this.render();
+
+            this.collection.on("remove", this.removeContact, this);
         },
 
         render: function() {
@@ -42,6 +44,22 @@ define([
                 model: item
             });
             this.$el.append(contactView.render().el);
+        },
+
+        removeContact: function(removedContact){
+            var removedContactData = removedContact.attributes;
+
+            _.each(removedContactData, function(val, key){
+                if(removedContactData[key] === removedContact.defaults[key]){
+                    delete removedContactData[key];
+                }
+            });
+
+            _.each(contacts, function(contact){
+                if(_.isEqual(contact, removedContactData)){
+                    contacts.splice(_.indexOf(contacts, contact), 1);
+                }
+            });
         }
     });
 

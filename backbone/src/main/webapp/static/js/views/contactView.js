@@ -3,9 +3,6 @@ define(['backbone'], function (Backbone) {
     return Backbone.View.extend({
         tagName:"div",
         className:"contactContainer",
-        initialize: function () {
-            this.render();
-        },
         render: function() {
             dust.render("intro", this.model.toJSON(), function(err, out) {
                 this.$el.html(out);
