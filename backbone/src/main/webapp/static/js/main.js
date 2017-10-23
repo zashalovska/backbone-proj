@@ -8,7 +8,8 @@ require.config({
         "lodash" : "lib/lodash",
         "text" : "lib/text",
         "contactModel" : "models/contactModel",
-        "contactsView" : "views/contactView"
+        "contactsView" : "views/contactView",
+        "backbone.modal" : "lib/backbone.modal"
     },
 
   shim: {
@@ -28,5 +29,14 @@ require.config({
 
 require(['contactView'], function (ContactLibraryView) {
     new ContactLibraryView;
+});
+
+require(['jquery', 'backbone.modal'], function($) {
+  $(function() {
+    $('#delete').click(function () {
+      var popup = new PopupView();
+      $('#app').append(popup.render().el);
+    });
+  });
 });
 

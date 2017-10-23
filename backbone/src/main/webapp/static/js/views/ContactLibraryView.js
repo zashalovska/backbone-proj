@@ -2,9 +2,10 @@ define([
     'backbone',
     'dust',
     'contactModel',
-    'contactsView'
-], function (Backbone, Dust, contactModel, ContactView) {
-    var source = document.getElementById('contactTemplate').innerText;
+    'contactsView',
+    'text!../templates/contacts.dust'
+], function (Backbone, Dust, contactModel, ContactView, Template) {
+    var source = Template;
     var compiled = dust.compile(source, "intro");
     dust.loadSource(compiled);
 

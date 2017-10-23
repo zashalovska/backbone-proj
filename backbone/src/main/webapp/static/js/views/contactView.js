@@ -12,7 +12,7 @@ define(['backbone'], function (Backbone) {
         },
 
         events: {
-            "click .deleteButton": "deleteContact"
+            "click .deleteBut": "deleteContact"
         },
 
         deleteContact:function () {
