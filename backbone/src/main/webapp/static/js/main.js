@@ -8,7 +8,8 @@ require.config({
         "lodash" : "lib/lodash",
         "text" : "lib/text",
         "contactModel" : "models/contactModel",
-        "contactsView" : "views/contactView"
+        "contactsView" : "views/contactView",
+        "confirmation" : "lib/jquery-confirm"
     },
 
   shim: {
@@ -22,7 +23,13 @@ require.config({
     },
     'dust': {
       exports: 'Dust'
-    }
+    },
+      'confirmation': {
+          debts: [
+              'jquery'
+          ],
+          exports: 'Confirmation'
+      }
   }
 });
 

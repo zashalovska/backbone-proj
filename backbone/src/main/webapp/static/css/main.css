@@ -3,8 +3,8 @@ body {
 }
 
 #app {
-    width: 1200px;
-    align: center;
+    width: 700px;
+    margin-left: 300px;
 }
 
 .contactContainer {

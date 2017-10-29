@@ -12,7 +12,8 @@ define(['backbone'], function (Backbone) {
         },
 
         events: {
-            "click .deleteButton": "deleteContact"
+            "click .deleteButton": "confirmation",
+            "click .confirm": "deleteContact"
         },
 
         deleteContact:function () {
@@ -21,6 +22,24 @@ define(['backbone'], function (Backbone) {
 
             //Delete view
             this.remove();
+        },
+
+        confirmation: function () {
+            var that = this;
+            $.confirm({
+                title: 'Delete Confirmation',
+                content: 'Do you really want to delete ' + that.model.get('name') + '?',
+                draggable: true,
+                closeIcon: true,
+                buttons: {
+                    delete: function () {
+                        that.deleteContact();
+                    },
+                    cancel: function () {
+
+                    }
+                }
+            });
         }
     });
 });
