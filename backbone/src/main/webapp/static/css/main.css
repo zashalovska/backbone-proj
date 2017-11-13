@@ -29,9 +29,52 @@ body {
 
 .deleteButton {
     padding: 5px;
+    margin-top: 10px;
     color: white;
-    margin: 10px;
     background-color: darkred;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.editButton {
+    padding: 5px;
+    color: white;
+    margin-top: 10px;
+    background-color: deepskyblue;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.addButton {
+    padding: 5px;
+    margin-bottom: 15px;
+    margin-left: 1100px;
+    color: white;
+    background-color: forestgreen;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#addContact label {
+    width:100px;
+    text-align:left;
+}
+
+#addContact label, #addContact input {
+    display:block;
+    margin-bottom:10px;
+    float:left;
+    margin-left:500px;
+    width: 350px;
+}
+
+#addContact button {
+    padding: 5px;
+    margin-bottom: 15px;
+    margin-left: 900px;
+    color: white;
+    background-color: forestgreen;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#newContact h3 {
+    margin-left: 600px;
 }
 
