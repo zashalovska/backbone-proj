@@ -9,7 +9,9 @@ require.config({
         "text" : "lib/text",
         "contactModel" : "models/contactModel",
         "contactsView" : "views/contactView",
-        "confirmation" : "lib/jquery-confirm"
+        "confirmation" : "lib/jquery-confirm",
+        "controller" : "lib/backbone.controller",
+        "contactController" : "controllers/contactController"
     },
 
   shim: {
@@ -24,11 +26,14 @@ require.config({
     'dust': {
       exports: 'Dust'
     },
-      'confirmation': {
+    'confirmation': {
           debts: [
               'jquery'
           ],
           exports: 'Confirmation'
+      },
+    'controller': {
+          debts: ['underscore', 'backbone']
       }
   }
 });

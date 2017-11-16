@@ -1,8 +1,9 @@
-define(['backbone'], function (Backbone) {
+define(['backbone', 'jquery', 'controller', 'contactController', 'confirmation'], function (Backbone, Jquery, Controller, contactRouter) {
 
     return Backbone.View.extend({
         tagName:"div",
         className:"contactContainer",
+
         render: function() {
             dust.render("intro", this.model.toJSON(), function(err, out) {
                 this.$el.html(out);
@@ -13,7 +14,8 @@ define(['backbone'], function (Backbone) {
 
         events: {
             "click .deleteButton": "confirmation",
-            "click .confirm": "deleteContact"
+            "click .confirm": "deleteContact",
+            "click .addButton": "redirect"
         },
 
         deleteContact:function () {
@@ -40,6 +42,10 @@ define(['backbone'], function (Backbone) {
                     }
                 }
             });
+        },
+
+        redirect: function () {
+            contactRouter.navigate('addContact');
         }
     });
 });
