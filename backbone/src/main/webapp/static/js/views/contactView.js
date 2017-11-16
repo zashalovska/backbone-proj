@@ -4,6 +4,10 @@ define(['backbone', 'jquery', 'controller', 'contactController', 'confirmation']
         tagName:"div",
         className:"contactContainer",
 
+      initialize: function () {
+        this.model.on("change", this.model.render, this)
+      },
+
         render: function() {
             dust.render("intro", this.model.toJSON(), function(err, out) {
                 this.$el.html(out);

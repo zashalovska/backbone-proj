@@ -23,10 +23,10 @@ define([
         model: contactModel
     });
 
-    var LibraryView = Backbone.View.extend({
+    return LibraryView = Backbone.View.extend({
         el:$("#app"),
 
-        initialize:function(){
+        initialize: function(){
             this.collection = new Library(contacts);
             this.render();
 
@@ -65,8 +65,4 @@ define([
             });
         }
     });
-
-    var libraryView = new LibraryView();
-
-    return ContactView;
 });
