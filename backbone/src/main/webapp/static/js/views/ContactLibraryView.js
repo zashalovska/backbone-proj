@@ -5,8 +5,9 @@ define([
     'contactsView',
     'jquery',
     'confirmation',
-    'text!../templates/contacts.dust'
-], function (Backbone, Dust, contactModel, ContactView, Jquery, Conf, template) {
+    'text!../templates/contacts.dust',
+    'text!../templates/addContactButton.dust'
+], function (Backbone, Dust, contactModel, ContactView, Jquery, Conf, template, buttTemplate) {
     var source = template;
     var compiled = dust.compile(source, "intro");
     dust.loadSource(compiled);
@@ -31,6 +32,7 @@ define([
             this.render();
 
             this.collection.on("remove", this.removeContact, this);
+            this.collection.on("add", this.addContact, this);
         },
 
         render: function() {
@@ -62,6 +64,12 @@ define([
                 if(_.isEqual(contact, removedContactData)){
                     contacts.splice(_.indexOf(contacts, contact), 1);
                 }
+            });
+        },
+
+        addContact: function(contact){
+            var addedContactView = new ContactView({
+                model: contact
             });
         }
     });

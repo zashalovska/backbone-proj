@@ -1,4 +1,4 @@
-define(['backbone', 'jquery', 'controller', 'contactController', 'confirmation'], function (Backbone, Jquery, Controller, contactRouter) {
+define(['backbone', 'jquery', 'confirmation'], function (Backbone, Jquery) {
 
     return Backbone.View.extend({
         tagName:"div",
@@ -19,7 +19,7 @@ define(['backbone', 'jquery', 'controller', 'contactController', 'confirmation']
         events: {
             "click .deleteButton": "confirmation",
             "click .confirm": "deleteContact",
-            "click .addButton": "redirect"
+            "click .addButton": "redirectNewContactForm"
         },
 
         deleteContact:function () {
@@ -48,8 +48,8 @@ define(['backbone', 'jquery', 'controller', 'contactController', 'confirmation']
             });
         },
 
-        redirect: function () {
-            contactRouter.navigate('addContact');
+        redirectNewContactForm: function () {
+            console.log("was redirected");
         }
     });
 });
