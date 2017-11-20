@@ -1,3 +1,4 @@
+/*
 define(['backbone', 'controller'], function (Backbone, Controller) {
     var ContactController = Backbone.Controller.extend({
 
@@ -16,4 +17,4 @@ define(['backbone', 'controller'], function (Backbone, Controller) {
 
 
     return ContactController;
-});
+});*/

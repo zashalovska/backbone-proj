@@ -1,30 +1,36 @@
 define([
     'backbone',
     'dust',
+    'addContactButton',
     'contactModel',
     'contactsView',
     'jquery',
     'confirmation',
     'text!../templates/contacts.dust',
-    'text!../templates/addContactButton.dust'
-], function (Backbone, Dust, contactModel, ContactView, Jquery, Conf, template, buttTemplate) {
+    'eventHandler'
+], function (Backbone, Dust, NewButton,  contactModel, ContactView, Jquery, Conf, template, eventHandler) {
     var source = template;
     var compiled = dust.compile(source, "intro");
     dust.loadSource(compiled);
 
-    var contacts = [{name:"John", phone: "800900", group: "Job"},
-        {name:"Oleg", phone: "980980", group: "Friend"},
-        {name:"Mila", phone: "43434343", group: "Family"},
-        {name:"Lilia", phone: "5555555", group: "School"},
-        {name:"Kate", phone: "5454545", group: "University"},
-        {name:"Melani", phone: "44444444", group: "Job"}
+    var button = new NewButton({
+        el: "#addButton"
+    });
+    var contacts = [
+        {number: "1", name:"John", phone: "800900", group: "Job"},
+        {number: "2", name:"Oleg", phone: "980980", group: "Friend"},
+        {number: "3", name:"Mila", phone: "43434343", group: "Family"},
+        {number: "4", name:"Lilia", phone: "5555555", group: "School"},
+        {number: "5", name:"Kate", phone: "5454545", group: "University"},
+        {number: "6", name:"Melani", phone: "44444444", group: "Job"}
     ];
 
     var Library = Backbone.Collection.extend({
-        model: contactModel
+        model: contactModel,
+        bus: eventHandler
     });
 
-    return LibraryView = Backbone.View.extend({
+    var LibraryView = Backbone.View.extend({
         el:$("#app"),
 
         initialize: function(){
@@ -33,6 +39,10 @@ define([
 
             this.collection.on("remove", this.removeContact, this);
             this.collection.on("add", this.addContact, this);
+        },
+
+        events: {
+            "click .addButton": "addContact"
         },
 
         render: function() {
@@ -44,33 +54,18 @@ define([
             return this;
         },
 
-        renderContact: function(item){
+        renderContact: function(item) {
             var contactView = new ContactView({
-                model: item
+                model: item,
+                bus: eventHandler
             });
             this.$el.append(contactView.render().el);
         },
 
         removeContact: function(removedContact){
-            var removedContactData = removedContact.attributes;
-
-            _.each(removedContactData, function(val, key){
-                if(removedContactData[key] === removedContact.defaults[key]){
-                    delete removedContactData[key];
-                }
-            });
-
-            _.each(contacts, function(contact){
-                if(_.isEqual(contact, removedContactData)){
-                    contacts.splice(_.indexOf(contacts, contact), 1);
-                }
-            });
+            this.$("#li" + removedContact.number).remove();
         },
-
-        addContact: function(contact){
-            var addedContactView = new ContactView({
-                model: contact
-            });
-        }
     });
+
+    return LibraryView;
 });

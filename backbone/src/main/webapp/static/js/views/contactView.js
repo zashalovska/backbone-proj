@@ -4,23 +4,23 @@ define(['backbone', 'jquery', 'confirmation'], function (Backbone, Jquery) {
         tagName:"div",
         className:"contactContainer",
 
-      initialize: function () {
-        this.model.on("change", this.model.render, this)
+      initialize: function (opt) {
+        this.model.on("change", this.model.render, this),
+        this.bus = opt.bus;
       },
 
-        render: function() {
-            dust.render("intro", this.model.toJSON(), function(err, out) {
-                this.$el.html(out);
-            }.bind(this));
+      render: function() {
+        dust.render("intro", this.model.toJSON(), function(err, out) {
+            this.$el.html(out);
+        }.bind(this));
 
-            return this;
-        },
+        return this;
+      },
 
-        events: {
-            "click .deleteButton": "confirmation",
-            "click .confirm": "deleteContact",
-            "click .addButton": "redirectNewContactForm"
-        },
+      events: {
+          "click .deleteButton": "confirmation",
+          "click .confirm": "deleteContact"
+      },
 
         deleteContact:function () {
             //Delete model
@@ -46,10 +46,6 @@ define(['backbone', 'jquery', 'confirmation'], function (Backbone, Jquery) {
                     }
                 }
             });
-        },
-
-        redirectNewContactForm: function () {
-            console.log("was redirected");
         }
     });
 });

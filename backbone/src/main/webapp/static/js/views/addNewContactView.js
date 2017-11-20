@@ -1,41 +1,43 @@
-define(['backbone', 'jquery'], function (Backbone) {
-    var source = "+ Add new Contact";
-    var compiled = dust.compile(source, "intro");
-    dust.loadSource(compiled);
-
-    var ContactButtonModel = Backbone.Model.extend({
-    });
+define([
+    'backbone',
+    'dust',
+    'jquery',
+    'router'], function (Backbone, Dust, j, router) {
 
     var AddedContactView =  Backbone.View.extend({
-        tagName:"button",
-        className:"addButton",
-        id: "addButton",
 
-        render: function() {
-            dust.render("intro", this.model.toJSON(), function(err, out) {
+        initialize: function () {
+            this.renderAddButton();
+        },
+
+        renderButton: function() {
+            var source = "<button class='addButton'>+ Add new Contact </button>";
+            var compiled = dust.compile(source, "intro");
+            dust.loadSource(compiled);
+
+            dust.render("intro", {}, function(err, out) {
                 this.$el.html(out);
             }.bind(this));
 
             return this;
         },
 
-        events: {
-            "click .addButton": "redirectNewContactForm"
+        renderAddButton: function () {
+            $("#addButtons").html(this.renderButton().el);
         },
 
-        redirectNewContactForm: function () {
-            console.log("was redirected");
+        events: {
+            "click .addButton": "addNContact"
+        },
+
+        addNContact: function () {
+            console.log("ffff");
+            rout.navigate("addContact", {trigger: true})
+            return this;
         }
-
     });
 
-    var contactButton = new ContactButtonModel();
-
-    var addContactView = new AddedContactView({
-        model: contactButton
-    });
-
-    $("#addButtons").html(addContactView.render().el);
+    var rout = new router();
 
     return AddedContactView;
 });

@@ -5,6 +5,7 @@ require.config({
         "underscore" : "lib/underscore",
         "contactView" : "views/ContactLibraryView",
         "addContactButton" : "views/addNewContactView",
+        "addNewContact" : "views/NewContactView",
         "dust" : "lib/dust-full",
         "lodash" : "lib/lodash",
         "text" : "lib/text",
@@ -13,6 +14,8 @@ require.config({
         "confirmation" : "lib/jquery-confirm",
         "controller" : "lib/backbone.controller",
         "contactController" : "controllers/contactController",
+        "eventHandler" : "events/EventHandler",
+        "router" : "routers/routes"
     },
 
   shim: {
@@ -37,10 +40,6 @@ require.config({
           debts: ['underscore', 'backbone']
       }
   }
-});
-
-require(['addContactButton'], function (addNewContactView) {
-    new addNewContactView;
 });
 
 require(['contactView'], function (ContactLibraryView) {

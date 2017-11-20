@@ -1,4 +1,5 @@
       <img src="{coverImage}"/>
+      <li id="{number}"></li>
       <li><h3>{name}</h3></li>
       <li>phone: {phone}</li>
       <li>group: {group}</li>
