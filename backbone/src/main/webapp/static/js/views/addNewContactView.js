@@ -5,25 +5,14 @@ define([
     'router'], function (Backbone, Dust, j, router) {
 
     var AddedContactView =  Backbone.View.extend({
+        el:$("#addButtons"),
 
         initialize: function () {
             this.renderAddButton();
         },
 
-        renderButton: function() {
-            var source = "<button class='addButton'>+ Add new Contact </button>";
-            var compiled = dust.compile(source, "intro");
-            dust.loadSource(compiled);
-
-            dust.render("intro", {}, function(err, out) {
-                this.$el.html(out);
-            }.bind(this));
-
-            return this;
-        },
-
         renderAddButton: function () {
-            $("#addButtons").html(this.renderButton().el);
+            $("#addButtons").html("<button class='addButton'>+ Add new Contact </button>");
         },
 
         events: {

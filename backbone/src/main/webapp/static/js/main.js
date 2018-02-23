@@ -3,9 +3,9 @@ require.config({
         "jquery" : "lib/jquery-3.2.1.min",
         "backbone" : "lib/backbone",
         "underscore" : "lib/underscore",
-        "contactView" : "views/ContactLibraryView",
         "addContactButton" : "views/addNewContactView",
         "addNewContact" : "views/NewContactView",
+        "contactView" : "views/ContactLibraryView",
         "dust" : "lib/dust-full",
         "lodash" : "lib/lodash",
         "text" : "lib/text",
@@ -42,7 +42,12 @@ require.config({
   }
 });
 
-require(['contactView'], function (ContactLibraryView) {
+require(['addContactButton'], function (addNewContactView) {
+    new addNewContactView;
+});
+
+require(['addContactButton', 'contactView'], function (addNewContactView,ContactLibraryView) {
+    new addNewContactView;
     new ContactLibraryView;
 });
 

@@ -1,21 +1,17 @@
 define([
     'backbone',
     'dust',
-    'addContactButton',
     'contactModel',
     'contactsView',
     'jquery',
     'confirmation',
     'text!../templates/contacts.dust',
     'eventHandler'
-], function (Backbone, Dust, NewButton,  contactModel, ContactView, Jquery, Conf, template, eventHandler) {
+], function (Backbone, Dust, contactModel, ContactView, Jquery, Conf, template, eventHandler) {
     var source = template;
     var compiled = dust.compile(source, "intro");
     dust.loadSource(compiled);
 
-    var button = new NewButton({
-        el: "#addButton"
-    });
     var contacts = [
         {number: "1", name:"John", phone: "800900", group: "Job"},
         {number: "2", name:"Oleg", phone: "980980", group: "Friend"},
@@ -26,8 +22,7 @@ define([
     ];
 
     var Library = Backbone.Collection.extend({
-        model: contactModel,
-        bus: eventHandler
+        model: contactModel
     });
 
     var LibraryView = Backbone.View.extend({
@@ -47,7 +42,7 @@ define([
 
         render: function() {
             var that = this;
-            _.forEach(this.collection.models, function(file) {
+            _.forEach(that.collection.models, function(file) {
                 console.log(file);
                 that.renderContact(file)});
 
@@ -64,7 +59,7 @@ define([
 
         removeContact: function(removedContact){
             this.$("#li" + removedContact.number).remove();
-        },
+        }
     });
 
     return LibraryView;

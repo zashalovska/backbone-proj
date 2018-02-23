@@ -1,11 +1,11 @@
-define(['backbone', 'jquery', 'confirmation'], function (Backbone, Jquery) {
+define(['backbone', 'confirmation'], function (Backbone) {
 
     return Backbone.View.extend({
         tagName:"div",
         className:"contactContainer",
 
       initialize: function (opt) {
-        this.model.on("change", this.model.render, this),
+        this.model.on("change", this.model.render, this);
         this.bus = opt.bus;
       },
 
@@ -18,8 +18,9 @@ define(['backbone', 'jquery', 'confirmation'], function (Backbone, Jquery) {
       },
 
       events: {
-          "click .deleteButton": "confirmation",
-          "click .confirm": "deleteContact"
+          "click .deleteButton": "conf",
+          "click .confirm": "deleteContact",
+          "click .addButton": "addNContact"
       },
 
         deleteContact:function () {
@@ -30,7 +31,7 @@ define(['backbone', 'jquery', 'confirmation'], function (Backbone, Jquery) {
             this.remove();
         },
 
-        confirmation: function () {
+        conf: function () {
             var that = this;
             $.confirm({
                 title: 'Delete Confirmation',
@@ -46,6 +47,12 @@ define(['backbone', 'jquery', 'confirmation'], function (Backbone, Jquery) {
                     }
                 }
             });
+        },
+
+        addNContact: function () {
+            console.log("ffff");
+            rout.navigate("addContact", {trigger: true})
+            return this;
         }
     });
 });
