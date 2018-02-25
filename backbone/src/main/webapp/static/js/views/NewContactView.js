@@ -1,8 +1,9 @@
 define([
     'backbone',
     'jquery',
-    'text!../templates/addContact.dust'
-], function (Backbone, Jquery, template) {
+    'text!../templates/addContact.dust',
+    'router'
+], function (Backbone, Jquery, template, router) {
 
     return AddContactView =  Backbone.View.extend({
 
@@ -11,7 +12,8 @@ define([
 
         events: {
             "click .addContact": "addContact",
-            "click .addButton": "addContact"
+            "click .addButton": "addContact",
+            "click .backToMain": "returnToMainPage"
         },
 
         initialize: function () {
@@ -35,6 +37,12 @@ define([
                 model: contact
             });
             this.$el.append(contact.render().$el);*/
+        },
+
+        returnToMainPage: function () {
+           var rout = new router();
+            rout.navigate("addContact", {trigger: true});
+            return this;
         },
 
         add: function(contact){

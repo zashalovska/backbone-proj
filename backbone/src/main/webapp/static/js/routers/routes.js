@@ -6,20 +6,38 @@ define([
 
     var AppRouter = Backbone.Router.extend({
         routes: {
-            'addContact': "addNew",
-            'addContacts/:name': 'saveContact'
+            '': 'initMainPage',
+            'contactList': "viewContactList",
+            'addContact': "addNewContact",
+            'addContacts/:name': 'saveContact',
+            'editContact/:id': 'editContact'
         },
 
-        addNew: function () {
-            console.log("render");
+        addNewContact: function () {
             var contact = new AddContactView({
-                el:"#app"
+                el:'#app'
             });
 
             contact.render();
+
+            var addButton = $('.addButton');
+            addButton[0].innerText = 'Main page';
+            addButton.attr("class", "backToMain");
         },
 
         saveContact: function (name) {
+
+        },
+
+        editContact: function (id) {
+            console.log("renderEdit");
+        },
+
+        viewContactList: function () {
+
+        },
+
+        initMainPage: function () {
 
         }
     });

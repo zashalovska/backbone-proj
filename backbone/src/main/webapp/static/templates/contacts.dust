@@ -3,5 +3,5 @@
       <li><h3>{name}</h3></li>
       <li>phone: {phone}</li>
       <li>group: {group}</li>
-      <button id="delete" class ="editButton" type="button">Edit</button>
+      <button id="edit" class ="editButton" type="button">Edit</button>
       <button id="delete" class ="deleteButton" type="button">Delete</button>

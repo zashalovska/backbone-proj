@@ -1,3 +1,4 @@
+<div id="newContact">
     <h3>Add new contact</h3>
     <form id="addContact" action="#">
     <div>
@@ -7,3 +8,4 @@
         <button id="add">Add</button>
     </div>
 </form>
+</div>

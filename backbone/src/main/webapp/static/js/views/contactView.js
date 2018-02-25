@@ -1,29 +1,28 @@
-define(['backbone', 'confirmation'], function (Backbone) {
+define(['backbone', 'confirmation', 'router'], function (Backbone, conf, router) {
 
     return Backbone.View.extend({
-        tagName:"div",
-        className:"contactContainer",
+        tagName: "div",
+        className: "contactContainer",
 
-      initialize: function (opt) {
-        this.model.on("change", this.model.render, this);
-        this.bus = opt.bus;
-      },
+        initialize: function () {
 
-      render: function() {
-        dust.render("intro", this.model.toJSON(), function(err, out) {
-            this.$el.html(out);
-        }.bind(this));
+        },
 
-        return this;
-      },
+        render: function () {
+            dust.render("intro", this.model.toJSON(), function (err, out) {
+                this.$el.html(out);
+            }.bind(this));
 
-      events: {
-          "click .deleteButton": "conf",
-          "click .confirm": "deleteContact",
-          "click .addButton": "addNContact"
-      },
+            return this;
+        },
 
-        deleteContact:function () {
+        events: {
+            "click .deleteButton": "conf",
+            "click .confirm": "deleteContact",
+            "click .editButton": "editContact"
+        },
+
+        deleteContact: function () {
             //Delete model
             this.model.destroy();
 
@@ -49,10 +48,11 @@ define(['backbone', 'confirmation'], function (Backbone) {
             });
         },
 
-        addNContact: function () {
-            console.log("ffff");
-            rout.navigate("addContact", {trigger: true})
+        editContact: function () {
+            var rout = new router();
+            rout.navigate("editContact/" + this.model.cid, {trigger: true});
             return this;
         }
     });
+
 });

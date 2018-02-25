@@ -43,7 +43,7 @@ body {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-.addButton {
+#button-bar {
     padding: 5px;
     margin-bottom: 15px;
     margin-left: 1100px;
@@ -61,7 +61,7 @@ body {
     display:block;
     margin-bottom:10px;
     float:left;
-    margin-left:600px;
+    margin-left:200px;
     width: 350px;
 }
 
@@ -75,6 +75,6 @@ body {
 }
 
 #newContact h3 {
-    margin-left: 600px;
+    margin-left: 200px;
 }
 

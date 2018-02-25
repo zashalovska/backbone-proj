@@ -1,14 +1,12 @@
-define([
-    'backbone',
-    'dust',
-    'contactModel',
-    'contactsView',
-    'jquery',
-    'confirmation',
-    'text!../templates/contacts.dust',
-    'eventHandler'
-], function (Backbone, Dust, contactModel, ContactView, Jquery, Conf, template, eventHandler) {
-    var source = template;
+define(function (require) {
+
+    require('dust');
+    var Backbone = require('backbone');
+    var contactModel = require('contactModel');
+    var ContactView = require('contactsView');
+    var source = require('text!../templates/contacts.dust');
+    var eventHandler = require('eventHandler');
+
     var compiled = dust.compile(source, "intro");
     dust.loadSource(compiled);
 
@@ -51,8 +49,7 @@ define([
 
         renderContact: function(item) {
             var contactView = new ContactView({
-                model: item,
-                bus: eventHandler
+                model: item
             });
             this.$el.append(contactView.render().el);
         },
