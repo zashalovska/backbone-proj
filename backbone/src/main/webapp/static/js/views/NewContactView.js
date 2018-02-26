@@ -39,12 +39,6 @@ define([
             this.$el.append(contact.render().$el);*/
         },
 
-        returnToMainPage: function () {
-           var rout = new router();
-            rout.navigate("addContact", {trigger: true});
-            return this;
-        },
-
         add: function(contact){
             var addedContactView = new ContactView({
                 model: contact

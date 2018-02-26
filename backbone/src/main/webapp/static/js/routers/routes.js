@@ -1,8 +1,9 @@
 define([
     'backbone',
     'jquery',
-    'addNewContact'
-], function (Backbone) {
+    'addNewContact',
+    'require'
+], function (Backbone, $, addNewContact, require) {
 
     var AppRouter = Backbone.Router.extend({
         routes: {
@@ -38,7 +39,11 @@ define([
         },
 
         initMainPage: function () {
+          var AddButton = require('addContactButton');
+          var NewContactLibrary = require('contactView');
 
+          var addButton = new AddButton();
+          var contactLibrary = new NewContactLibrary();
         }
     });
 

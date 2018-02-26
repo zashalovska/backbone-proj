@@ -38,8 +38,10 @@ require.config({
   }
 });
 
-require(['addContactButton', 'contactView'], function (addNewContactView,ContactLibraryView) {
+require(['router', 'addContactButton', 'contactView'], function (Router, addNewContactView,ContactLibraryView) {
     new addNewContactView;
     new ContactLibraryView;
+    new Router();
+
 });
 

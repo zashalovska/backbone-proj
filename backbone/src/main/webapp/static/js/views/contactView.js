@@ -9,7 +9,8 @@ define(['backbone', 'confirmation', 'router'], function (Backbone, conf, router)
         },
 
         render: function () {
-            dust.render("intro", this.model.toJSON(), function (err, out) {
+
+            dust.render("library", this.model.toJSON(), function (err, out) {
                 this.$el.html(out);
             }.bind(this));
 

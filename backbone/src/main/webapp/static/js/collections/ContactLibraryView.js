@@ -7,9 +7,6 @@ define(function (require) {
     var source = require('text!../templates/contacts.dust');
     var eventHandler = require('eventHandler');
 
-    var compiled = dust.compile(source, "intro");
-    dust.loadSource(compiled);
-
     var contacts = [
         {number: "1", name:"John", phone: "800900", group: "Job"},
         {number: "2", name:"Oleg", phone: "980980", group: "Friend"},
@@ -20,18 +17,22 @@ define(function (require) {
     ];
 
     var Library = Backbone.Collection.extend({
-        model: contactModel
+        model: contactModel,
+        template: source
     });
 
     var LibraryView = Backbone.View.extend({
         el:$("#app"),
 
         initialize: function(){
-            this.collection = new Library(contacts);
-            this.render();
+          var compiled = dust.compile(source, "library");
+          dust.loadSource(compiled);
 
-            this.collection.on("remove", this.removeContact, this);
-            this.collection.on("add", this.addContact, this);
+          this.collection = new Library(contacts);
+          this.render();
+
+          this.collection.on("remove", this.removeContact, this);
+          this.collection.on("add", this.addContact, this);
         },
 
         events: {
@@ -39,6 +40,7 @@ define(function (require) {
         },
 
         render: function() {
+          $("#app").empty();
             var that = this;
             _.forEach(that.collection.models, function(file) {
                 console.log(file);
@@ -51,6 +53,7 @@ define(function (require) {
             var contactView = new ContactView({
                 model: item
             });
+
             this.$el.append(contactView.render().el);
         },
 
