@@ -15,7 +15,8 @@ require.config({
         "confirmation" : "lib/jquery-confirm",
         "controller" : "lib/backbone.controller",
         "eventHandler" : "events/EventHandler",
-        "router" : "routers/routes"
+        "router" : "routers/routes",
+        "validation": "lib/backbone-validation"
     },
 
   shim: {
@@ -35,7 +36,15 @@ require.config({
       },
     'controller': {
           debts: ['underscore', 'backbone']
-      }
+      },
+     'validation':{
+       debts: [
+         'backbone',
+         'underscore',
+         'jquery'
+       ],
+       exports: 'Validation'
+     }
   }
 });
 

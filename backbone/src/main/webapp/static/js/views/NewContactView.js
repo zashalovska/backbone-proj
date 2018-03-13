@@ -3,7 +3,7 @@ define([
     'jquery',
     'text!../templates/addContact.dust',
     'router'
-], function (Backbone, Jquery, template, router) {
+], function (backbone, Jquery, template, router) {
 
     return AddContactView =  Backbone.View.extend({
 
@@ -13,11 +13,12 @@ define([
         events: {
             "click .addContact": "addContact",
             "click .addButton": "addContact",
-            "click .backToMain": "returnToMainPage"
+            "click .backToMain": "returnToMainPage",
+            "click .add": "addContacts"
         },
 
         initialize: function () {
-            //this.model.on("add", this.addContacts, this);
+
         },
 
         render: function() {
@@ -32,17 +33,21 @@ define([
             return this;
         },
 
-        addContacts: function (contact) {
-           /* var contact = new ContactView({
+        addContacts: function () {
+
+           var contact = new ContactView({
                 model: contact
             });
-            this.$el.append(contact.render().$el);*/
+
+            this.$el.append(contact.render().$el);
         },
 
         add: function(contact){
             var addedContactView = new ContactView({
                 model: contact
             });
+
+          Backbone.Validation.bind(contact);
         }
     });
 

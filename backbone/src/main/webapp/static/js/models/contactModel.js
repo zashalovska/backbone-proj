@@ -1,6 +1,7 @@
-define(['backbone'], function (Backbone) {
+define(['backbone', 'underscore', 'validation'], function (Backbone, $, validation) {
 
     return Backbone.Model.extend({
+
         defaults:{
             coverImage:"../../img/man1.jpg",
             name:"Unnamed",
@@ -8,20 +9,10 @@ define(['backbone'], function (Backbone) {
             group: "without group"
         },
 
-        validate: function (attr) {
-            if (!attr.name){
-                return "Please, enter the name!"
-            }
-
-            if (!attr.phone){
-                return "Please, enter the phone!"
-            }
-
-            if (!attr.group){
-                return "Please, enter the group!"
-            }
+        validation: function () {
+          name: {
+            required: true
+          }
         }
-
-
     });
 });
