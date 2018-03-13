@@ -6,6 +6,7 @@ require.config({
         "addContactButton" : "views/addButtonView",
         "addNewContact" : "views/NewContactView",
         "contactView" : "collections/ContactLibraryView",
+        "editContact" : "views/EditContactView",
         "dust" : "lib/dust-full",
         "lodash" : "lib/lodash",
         "text" : "lib/text",
@@ -38,10 +39,11 @@ require.config({
   }
 });
 
-require(['router', 'addContactButton', 'contactView'], function (Router, addNewContactView,ContactLibraryView) {
-    new addNewContactView;
-    new ContactLibraryView;
-    new Router();
-
+require(['addContactButton', 'contactView'], function () {
+    var Router = require('router');
+    var rout = new Router;
+    var fragment = Backbone.history.getFragment();
+    rout.navigate(fragment, {trigger: true});
+    Backbone.history.loadUrl(fragment);
 });
 

@@ -1,6 +1,6 @@
-<div id="newContact">
+<div id="newContact" class="contactForms">
     <h3>Add new contact</h3>
-    <form id="addContact" action="#">
+    <form id="addContact">
     <div>
         <label for="title">Name: </label><input id="title" type="text" />
         <label for="author">Phone: </label><input id="author" type="text" />

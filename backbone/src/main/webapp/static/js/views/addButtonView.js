@@ -1,35 +1,39 @@
 define(function (require) {
-    var Backbone = require ('backbone');
-    var router = require ('router');
+  var Backbone = require('backbone');
+  var router = require('router');
 
-    var AddedContactView = Backbone.View.extend({
-        el: $("#addButtons"),
+  var AddedContactView = Backbone.View.extend({
+    el: $("#addButtons"),
 
-        initialize: function () {
-            this.renderAddButton();
-        },
+    initialize: function () {
 
-        renderAddButton: function () {
-            $("#addButtons").html("<button class='addButton' id='button-bar'>+ Add new Contact </button>");
-        },
+    },
 
-        events: {
-            "click .addButton": "addNewContact",
-            "click .backToMain": "returnToMainPage"
-        },
+    renderAddButton: function () {
+      $("#addButtons").html("<button class='addButton' id='button-bar'>+ Add new Contact </button>");
+    },
 
-        addNewContact: function () {
-            rout.navigate("addContact", {trigger: true});
-            return this;
-        },
+    renderMainButton: function () {
+      $("#addButtons").html("<button class='backToMain' id='button-bar'>Main page </button>");
+    },
 
-        returnToMainPage: function () {
-            rout.navigate("", {trigger: true});
-            return this;
-        }
-    });
+    events: {
+      "click .addButton": "addNewContact",
+      "click .backToMain": "returnToMainPage"
+    },
 
-    var rout = new router();
+    addNewContact: function () {
+      rout.navigate("addContact", {trigger: true});
+      return this;
+    },
 
-    return AddedContactView;
+    returnToMainPage: function () {
+      rout.navigate("", {trigger: true});
+      return this;
+    }
+  });
+
+  var rout = new router();
+
+  return AddedContactView;
 });

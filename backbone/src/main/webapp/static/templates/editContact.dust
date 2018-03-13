@@ -1,0 +1,11 @@
+<div id="editContact" class="contactForms">
+    <h3>Edit contact</h3>
+    <form id="editContact">
+    <div>
+        <label for="title">Name: </label><input id="title" type="text" value="{name}" />
+        <label for="author">Phone: </label><input id="author" type="text" value="{phone}" />
+        <label for="releaseDate">Group: </label><input id="releaseDate" type="text" value="{group}" />
+        <button id="editContact">Edit</button>
+    </div>
+</form>
+</div>

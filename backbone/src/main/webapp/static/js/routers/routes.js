@@ -1,53 +1,66 @@
 define([
-    'backbone',
-    'jquery',
-    'addNewContact',
-    'require'
-], function (Backbone, $, addNewContact, require) {
+  'backbone',
+  'jquery',
+  'addNewContact',
+  'editContact',
+  'require',
+  'contactModel'
+], function (Backbone, $, addNewContact, EditContactView, require, ContactModel) {
 
-    var AppRouter = Backbone.Router.extend({
-        routes: {
-            '': 'initMainPage',
-            'contactList': "viewContactList",
-            'addContact': "addNewContact",
-            'addContacts/:name': 'saveContact',
-            'editContact/:id': 'editContact'
-        },
+  Backbone.history.start();
 
-        addNewContact: function () {
-            var contact = new AddContactView({
-                el:'#app'
-            });
+  var AppRouter = Backbone.Router.extend({
+    routes: {
+      'contactList': "viewContactList",
+      'addContact': "addNewContact",
+      'addContacts/:name': 'saveContact',
+      'editContact/:name/:group/:phone': 'editContact',
+      '*other': 'initMainPage'
+    },
 
-            contact.render();
+    addNewContact: function () {
+      var contact = new AddContactView({
+        el: '#app'
+      });
 
-            var addButton = $('.addButton');
-            addButton[0].innerText = 'Main page';
-            addButton.attr("class", "backToMain");
-        },
+      contact.render();
 
-        saveContact: function (name) {
+      var AddButton = require('addContactButton');
+      var addButton = new AddButton();
+      addButton.renderMainButton();
+    },
 
-        },
+    saveContact: function (name) {
 
-        editContact: function (id) {
-            console.log("renderEdit");
-        },
+    },
 
-        viewContactList: function () {
+    editContact: function (name, group, phone) {
+      var AddButton = require('addContactButton');
+      var addButton = new AddButton();
+      addButton.renderMainButton();
 
-        },
+      var editContactModel = new ContactModel({
+        phone: phone,
+        name: name
+      });
 
-        initMainPage: function () {
-          var AddButton = require('addContactButton');
-          var NewContactLibrary = require('contactView');
+      var editContactView = new EditContactView({
+        el: '#app',
+        model: editContactModel
+      });
 
-          var addButton = new AddButton();
-          var contactLibrary = new NewContactLibrary();
-        }
-    });
+      editContactView.render();
+    },
 
-    Backbone.history.start();
+    initMainPage: function () {
+      var AddButton = require('addContactButton');
+      var NewContactLibrary = require('contactView');
 
-    return AppRouter;
+      var addButton = new AddButton();
+      addButton.renderAddButton();
+      var contactLibrary = new NewContactLibrary();
+    }
+  });
+
+  return AppRouter;
 });

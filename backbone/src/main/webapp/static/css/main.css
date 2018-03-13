@@ -52,12 +52,12 @@ body {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-#addContact label {
+.contactForms label {
     width:100px;
     text-align:left;
 }
 
-#addContact label, #addContact input {
+.contactForms label, .contactForms input {
     display:block;
     margin-bottom:10px;
     float:left;
@@ -65,7 +65,7 @@ body {
     width: 350px;
 }
 
-#addContact button {
+.contactForms button {
     padding: 5px;
     margin-bottom: 15px;
     margin-left: 900px;
@@ -74,7 +74,7 @@ body {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-#newContact h3 {
+.contactForms h3 {
     margin-left: 200px;
 }
 
